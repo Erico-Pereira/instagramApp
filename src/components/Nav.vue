@@ -5,7 +5,7 @@
     import AuthModal from "./AuthModal.vue"
 
     const searchUsermane = ref("")
-    const isAuthenticated = ref(true)
+    const isAuthenticated = ref(false)
     const router = useRouter()
 
     function onSearch() {
