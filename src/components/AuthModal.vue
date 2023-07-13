@@ -30,14 +30,14 @@
 
         const handleOk = async (e) => {
             if(props.isLogin){
-                await userStore.handleSignup({
+                await userStore.handleLogin({
                     password: userCredential.password,
                     email: userCredential.email
                 })
             }else{
-
+                await userStore.handleSignup(userCredential);
             }
-           await userStore.handleSignup(userCredential)
+
            if(user.value){
                 clearCredential()
                 visible.value = false
@@ -48,6 +48,7 @@
             userStore.clearErrorMessage()
             visible.value = false
         }
+
         const title = props.isLogin ? 'Login' : 'Signup'
         
 </script>

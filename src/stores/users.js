@@ -25,19 +25,34 @@ export const useUserStore = defineStore('users', () => {
       return errorMessage.value = "Email is invalid"
     }
 
-    if(password.length = 0){
+    if(password.length == 0){
       return errorMessage.value = "Password cannot be empty"
     }
 
     loading.value = true;
 
-    await supabase.auth.signInWithPassword({email, password})
-      
-    
+    const {error} = await supabase.auth.signInWithPassword({email, password})
+
+    if(error){
+      loading.value = false
+      return errorMessage.value = error.message
+    }
+
+    const {data: existingUser} = await supabase.from("users").select().eq('email', email).single()
+
+    user.value={
+      email: existingUser.email,
+      username: existingUser.username,
+      id: existingUser.id
+    }
+
+    loading.value = false
+    errorMessage.value = ""
 
   }
 
   async function handleSignup (credentials){
+
     const {email, password, username} = credentials
     
     if(password.length < 6){
