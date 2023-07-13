@@ -17,6 +17,7 @@
 
         const showModal = () => {
             visible.value = true;
+           // userStore.getUser()
         };
 
         function clearCredential(){
@@ -62,9 +63,9 @@
             <AButton :disable="loading" key="submit" type="primary" :loading="loading" @click="handleOk">Submit</AButton>
         </template>
         <div v-if="!loading" class="inputContainer">
-        <AInput class="input" v-if="!isLogin" v-model:value="userCredential.username" placeholder="Usermane" />
-        <AInput class="input" v-model:value="userCredential.email" placeholder="Email" />
-        <AInput class="input" v-model:value="userCredential.password" placeholder="Password" type='password' />
+            <AInput class="input" v-if="!isLogin" v-model:value="userCredential.username" placeholder="Usermane" />
+            <AInput class="input" v-model:value="userCredential.email" placeholder="Email" />
+            <AInput class="input" v-model:value="userCredential.password" placeholder="Password" type='password' />
         </div>
         <div v-else class="spinner">
             <ASpin />
