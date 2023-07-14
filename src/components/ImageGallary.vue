@@ -2,13 +2,14 @@
 import {defineProps} from "vue"
 
 const props = defineProps(['posts'])
+const  {VITE_BASE_PHOTO_URL} = import.meta.env
 
 </script>
 
 
 <template>
     <div class="imageGallaryContainer">
-        <img v-for="post in props.posts" :key="post.id" :src="post.img">
+        <img v-for="post in props.posts" :key="post.id" :src= "`${VITE_BASE_PHOTO_URL}${post.url}`">
     </div>
 
 
